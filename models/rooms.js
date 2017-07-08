@@ -20,5 +20,14 @@ module.exports = function(sequelize, DataTypes) {
     }
  
   });
+
+  Room.associate = function (models) {
+
+    Room.belongsToMany(models.reservations, {
+      through: 'RoomReserve'
+           
+    });
+    
+  };
   return Room;
 };

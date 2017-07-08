@@ -1,6 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
   var Guest = sequelize.define("guests", {
-    // Giving the Author model a name of type STRING
+    // Giving the Guest model first_name, last_name
     first_name: {type: DataTypes.STRING,
       allowNull: false,
       validate: {
@@ -12,20 +12,19 @@ module.exports = function(sequelize, DataTypes) {
       validate: {
         len:[1]
       }
-    },
-    checkin_date: {type: DataTypes.DATE,
-      allowNull: false,
-      validate: {
-        isDate: true
-      }
-    },
-    checkout_date: {type: DataTypes.DATE,
-      allowNull: false,
-      validate: {
-        isDate: true
-      }
     }
- 
   });
+
+  Guest.associate = function (models) {
+    Guest.hasMany(models.reservations, {
+
+      onDelete: "cascade",
+      foreignKey: {
+        allowNull: false
+      }
+    
+  } );
+};
+    
   return Guest;
 };
