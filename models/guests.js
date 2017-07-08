@@ -1,6 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
   var Guest = sequelize.define("guests", {
-    // Giving the Author model a name of type STRING
+    // Giving the Guest model first_name, last_name
     first_name: {type: DataTypes.STRING,
       allowNull: false,
       validate: {
@@ -12,20 +12,22 @@ module.exports = function(sequelize, DataTypes) {
       validate: {
         len:[1]
       }
-    },
-    checkin_date: {type: DataTypes.DATE,
-      allowNull: false,
-      validate: {
-        isDate: true
-      }
-    },
-    checkout_date: {type: DataTypes.DATE,
-      allowNull: false,
-      validate: {
-        isDate: true
+    }
+  },
+    // Here we'll pass a second "classMethods" object into the define method
+    // This is for any additional configuration we want to give our models
+    {
+      // We're saying that we want our Guest to have many reservation
+      // We're saying that we want our Guest to have many order
+      classMethods: {
+        associate: function(models) {
+          
+          Guest.hasMany(models.Reservation, {
+            onDelete: "cascade"
+          });
+        }
       }
     }
- 
-  });
+  );
   return Guest;
 };
