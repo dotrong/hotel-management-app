@@ -13,28 +13,23 @@ module.exports = function(sequelize, DataTypes) {
         len:[1]
       }
     }
-  },
+  });
 
-    {
-      // We're saying that we want 1 reservation belong to Guest
-      classMethods: {
-        associate: function(models) {
-          // Associating Reservation with Guest
-          
-          Reservation.belongsTo(models.Guest, {
-            foreignKey: {
-              allowNull: false
-            }
-          });
-          Reservation.hasOne(models.Room, {
-            foreignKey: {
-              allowNull: false
-            }
-          });
-        }
+  Reservation.associate = function (models) {
+
+    Reservation.belongsTo(models.guests, {
+      foreignKey: {
+        allowNull: false
       }
-    }  
-  
-  );
+    });
+
+    Reservation.hasOne(models.rooms, {
+      foreignKey: {
+        allowNull: true
+      }
+    });
+   
+};
+
   return Reservation;
 };
