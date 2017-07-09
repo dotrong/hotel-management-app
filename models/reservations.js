@@ -23,11 +23,11 @@ module.exports = function(sequelize, DataTypes) {
       }
     });
 
-    Reservation.hasOne(models.rooms, {
-      foreignKey: {
-        allowNull: true
-      }
-    });
+    // Reservation.hasOne(models.rooms, {
+    //   foreignKey: {
+    //     allowNull: true
+    //   }
+    // });
    
 };
 

@@ -18,6 +18,10 @@ app.set("view engine", "handlebars");
 
 // Import routes and give the server access to them.
 //require("./routes/hotel-routes.js")(app);
+require("./routes/guest-api-routes.js")(app);
+//require("./routes/html-routes.js")(app);
+require("./routes/reservation-api-routes.js")(app);
+require("./routes/room-api-routes.js")(app);
 //app.use("/", routes);
 
 db.sequelize.sync({ force: true }).then(function() {
