@@ -117,29 +117,6 @@
   text-align: center;
 }
 
-.image-5 {
-  padding-top: 9px;
-}
-
-.nav-link-4 {
-  font-family: Comfortaa, sans-serif;
-  font-weight: 700;
-}
-
-.nav-link-5 {
-  font-family: Comfortaa, sans-serif;
-  font-weight: 700;
-}
-
-.nav-link-6 {
-  font-family: Comfortaa, sans-serif;
-  font-weight: 700;
-}
-
-.navbar-2 {
-  background-color: transparent;
-}
-
 @media (max-width: 479px) {
   .image-2 {
     display: inline-block;
