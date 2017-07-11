@@ -23,12 +23,15 @@
   right: 0px;
   bottom: 0px;
   display: inline-block;
+  max-width: none;
   float: none;
   clear: none;
+  text-align: left;
 }
 
 .div-block-2 {
-  padding-top: 122px;
+  padding-top: 167px;
+  text-align: center;
 }
 
 .div-block-3 {
@@ -48,6 +51,7 @@
 }
 
 .button.no-fill {
+  display: none;
   border-color: #3898ea;
   background-color: #fff;
   color: #000;
@@ -81,7 +85,7 @@
 
 .navbar {
   position: static;
-  display: block;
+  display: none;
   background-color: hsla(0, 0%, 100%, .5);
 }
 
@@ -111,5 +115,19 @@
 
 .div-block-5 {
   text-align: center;
+}
+
+@media (max-width: 479px) {
+  .image-2 {
+    display: inline-block;
+    max-width: 100%;
+  }
+  .div-block-2 {
+    padding-top: 0px;
+  }
+  .container {
+    margin-right: 22px;
+    margin-left: 22px;
+  }
 }
 
