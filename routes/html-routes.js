@@ -19,21 +19,21 @@ module.exports = function(app) {
 
   // Login route
   app.get("/login", function(req, res) {
-    res.sendFile(path.join(__dirname, "../views/login.html"));
+    res.sendFile(path.join(__dirname, "../public/login.html"));
   });
 
   // Selection route
   app.get("/selection", function(req, res) {
-    res.sendFile(path.join(__dirname, "../views/selectroom.html"));
+    res.sendFile(path.join(__dirname, "../public/selectroom.html"));
   });
 
   // Form route
   app.get("/form", function(req, res) {
-    res.sendFile(path.join(__dirname, "../views/form.html"));
+    res.sendFile(path.join(__dirname, "../public/form.html"));
   });
 
   // Contact route
   app.get("/contact", function(req, res) {
-    res.sendFile(path.join(__dirname, "../views/contact.html"));
+    res.sendFile(path.join(__dirname, "../public/contact.html"));
   });
 };
