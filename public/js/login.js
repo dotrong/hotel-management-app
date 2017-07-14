@@ -33,8 +33,18 @@ $(document).ready(function() {
   function authenUser(userData) {
     console.log(userData);
     $.post("/api/users/login", userData)
-      .then(function(results) {
-        console.log(results);
+      .then(function() {
+        getToRedirect();
       });
+  };
+
+  function getToRedirect() {
+    $.get("/redirect").then(function(results) {
+
+      console.log(results);
+
+    }); 
+
+   // window.location.replace("/redirect");
   }
 });
