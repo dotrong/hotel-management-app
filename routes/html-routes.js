@@ -34,6 +34,13 @@ module.exports = function(app) {
 
   // Contact route
   app.get("/contact", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/contact.html"));
+    if (req.session.userRole == 'manager') {
+
+      res.sendFile(path.join(__dirname, "../public/contact.html"));
+    }
+    else {
+      res.sendFile(path.join(__dirname, "../public/form.html"));
+    }
+    
   });
 };
