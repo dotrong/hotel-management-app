@@ -5,7 +5,8 @@ div.ex1{
 
 /* Bordered form */
 form {
-    border: 3px solid #f1f1f1;
+    border: 5px solid #f1f1f1;
+    margin-top: 35px;
 }
 
 /* Full-width inputs */
@@ -52,7 +53,7 @@ a:hover {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    margin-left: 91px;
+    margin-left: 88px;
 }
 
 
