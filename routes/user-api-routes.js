@@ -54,8 +54,9 @@ module.exports = function(app) {
     //login 
     app.post("/api/users/login", function(req, res) {
         // get login info in req.body
-        console.log("toto");
-        //console.log(req);
+        
+        console.log(req.body);
+        
 
         //var sess = req.session; 
 
@@ -78,11 +79,22 @@ module.exports = function(app) {
                   //  res.redirect('/home/dashboard');
                   //  res.render('/home/dashboard');
                 //res.json(results)
-                    res.redirect('/contact');
+                    if (results.user_role === 'manager') {
+                        console.log("redirect for manager");
+                         res.redirect('/manager');
+                    }
+                    else if (results.user_role === 'customer') {
+                        console.log("redirect for customer");
+                        res.redirect('/customer');
+                    }
+
+                    // console.log("user exist");
+                    // res.end();
+    
                 }
                 else {
-
-                    res.json(results)
+                    console.log("no user");
+                    res.json({results})
 
                 } 
 

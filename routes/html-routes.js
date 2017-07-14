@@ -28,19 +28,15 @@ module.exports = function(app) {
   });
 
   // Form route
-  app.get("/form", function(req, res) {
+  app.get("/manager", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/form.html"));
   });
 
   // Contact route
-  app.get("/contact", function(req, res) {
-    if (req.session.userRole == 'manager') {
+  app.get("/customer", function(req, res) {
+ 
+     res.sendFile(path.join(__dirname, "../public/contact.html"));
 
-      res.sendFile(path.join(__dirname, "../public/contact.html"));
-    }
-    else {
-      res.sendFile(path.join(__dirname, "../public/form.html"));
-    }
-    
   });
+
 };
