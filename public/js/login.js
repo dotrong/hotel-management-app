@@ -2,14 +2,6 @@
 
 $(document).ready(function() {
 
-    $("#newUser_button").click(function() {
-
-    });
-
-
-    $("#login_button").click(function() {
-
-    });
  
 
   
