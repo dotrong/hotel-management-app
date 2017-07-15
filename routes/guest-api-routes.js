@@ -51,4 +51,67 @@ module.exports = function(app) {
             res.json(results);
         });
     });
+
+    app.post("/api/guests/signup", function(req, res){
+
+    var message = '';
+    req.body.user_role = 'customer';
+
+    db.guests.findOne({
+
+        attributes: ['password','user_role'],
+        where: {
+            username: req.body.username
+            
+        }
+        }).then(function(results) {
+            //res.json(results);
+            if (results) {
+                res.redirect("/");
+            }
+        });
+
+    db.guests.create(req.body).then(function(results) {
+        message = "Succesfully! Your account has been created.";
+        res.json(results);
+    });
+
+});
+
+//-----------------------------------------------login page call------------------------------------------------------
+app.post("/api/guests/login", function(req,res) {
+    var message = '';
+    var sess = req.session; 
+    var name= req.body.username;
+    var pass= req.body.password;
+
+    db.guests.findOne({
+
+        attributes: ['password','user_role'],
+        where: {
+            username: name,
+            password: pass
+        }
+        }).then(function(results) {
+            //res.json(results);
+            if (results) {
+                req.session.userId = results.username;
+                req.session.userRole = results.user_role;
+
+                if (results.user_role === 'customer') {
+                    res.redirect("/customer");
+                }
+                else if (results.user_role === 'manager') {
+                    res.redirect("/manager");
+                }             
+            }
+            else {
+
+                console.log("no user");
+                res.json({results})
+
+            }
+        });
+
+    });
 }
