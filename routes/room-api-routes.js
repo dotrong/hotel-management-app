@@ -8,6 +8,17 @@ module.exports = function(app) {
         });
     });
 
+      // Find all rooms and return them to the user with res.json
+    app.get("/api/rooms/available", function(req, res) {
+        db.rooms.findAll({
+            where: {
+            room_status: 0
+        }
+        }).then(function(results) {
+            res.json(results);
+        });
+    });
+
     app.get("/api/rooms/:id", function(req, res) {
      // Find one room with the id in req.params.id and return them to the user with res.json
         db.rooms.findOne({
