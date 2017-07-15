@@ -51,54 +51,107 @@ module.exports = function(app) {
         });
     });
 
-    //login 
-    app.post("/api/users/login", function(req, res) {
-        // get login info in req.body
+    // //login 
+    // app.post("/api/users/login", function(req, res) {
+    //     // get login info in req.body
         
-        console.log(req.body);
+    //     console.log(req.body);
         
 
-        //var sess = req.session; 
+    //     var sess = req.session; 
 
-        db.users.findOne({
+    //     db.users.findOne({
 
-            attributes: ['password','user_role'],
-            where: {
-                username: req.body.username,
-                password: req.body.password
-            }
-            }).then(function(results) {
-                //res.json(results);
-                if (results) {
+    //         attributes: ['password','user_role'],
+    //         where: {
+    //             username: req.body.username,
+    //             password: req.body.password
+    //         }
+    //         }).then(function(results) {
+    //             //res.json(results);
+    //             if (results) {
+
+
                     
-                    //user successfully loging
-                    req.session.userId = results.id;
-                    req.session.user = results.username;
-                    req.session.userRole = results.user_role;
+    //                 //user successfully loging
+    //                 req.session.userId = results.id;
+    //                 req.session.user = results.username;
+    //                 req.session.userRole = results.user_role;
                     
-                  //  res.redirect('/home/dashboard');
-                  //  res.render('/home/dashboard');
-                //res.json(results)
-                    if (results.user_role === 'manager') {
-                        console.log("redirect for manager");
-                         res.redirect('/manager');
-                    }
-                    else if (results.user_role === 'customer') {
-                        console.log("redirect for customer");
-                        res.redirect('/customer');
-                    }
+    //               //  res.redirect('/home/dashboard');
+    //               //  res.render('/home/dashboard');
+    //             //res.json(results)
+    //                 if (results.user_role === 'manager') {
+    //                     console.log("redirect for manager");
+    //                      res.redirect('/manager');
+    //                 }
+    //                 else if (results.user_role === 'customer') {
+    //                     console.log("redirect for customer");
+    //                     res.redirect('/customer');
+    //                 }
 
-                    // console.log("user exist");
-                    // res.end();
+    //                 // console.log("user exist");
+    //                 // res.end();
     
+    //             }
+    //             else {
+    //                 console.log("no user");
+    //                 res.json({results})
+
+    //             } 
+
+    //         });
+
+    // });
+
+    
+//---------------------------------------------signup------------------------------------------------------
+app.post("/api/users/signup", function(req, res){
+
+    var message = '';
+
+    db.users.create(req.body).then(function(results) {
+        message = "Succesfully! Your account has been created.";
+        res.json(results);
+    });
+
+});
+
+//-----------------------------------------------login page call------------------------------------------------------
+app.post("/api/users/login", function(req,res) {
+    var message = '';
+    var sess = req.session; 
+    var name= req.body.username;
+    var pass= req.body.password;
+
+    db.users.findOne({
+
+        attributes: ['password','user_role'],
+        where: {
+            username: name,
+            password: pass
+        }
+        }).then(function(results) {
+            //res.json(results);
+            if (results) {
+                req.session.userId = results.username;
+                req.session.userRole = results.user_role;
+
+                if (results.user_role === 'customer') {
+                    res.redirect("/customer");
                 }
-                else {
-                    console.log("no user");
-                    res.json({results})
+                else if (results.user_role === 'manager') {
+                    res.redirect("/manager");
+                }             
+            }
+            else {
 
-                } 
+                console.log("no user");
+                res.json({results})
 
-            });
+            }
+        });
 
     });
 }
+
