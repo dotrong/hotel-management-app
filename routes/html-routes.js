@@ -14,6 +14,7 @@ module.exports = function(app) {
 
   // index route loads view.html
   app.get("/", function(req, res) {
+    console.log("test");
     console.log(req);
     if (req.session.userRole === 'customer') {
       res.redirect("/customer");

@@ -1,8 +1,7 @@
 use hotel;
 
 insert into users(username, password, user_role)
-values("bob", "abc", "customer");
-
+values("bob", "abc@yahoo.com", "customer");
 
 insert into guests(first_name, last_name)
 values("bob", "Robberts");
@@ -19,3 +18,4 @@ values(2, "1 Bed", 75.00);
 
 
 select * from users;
+select * from reservations;
