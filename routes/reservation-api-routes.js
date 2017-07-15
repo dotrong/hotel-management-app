@@ -27,12 +27,22 @@ module.exports = function(app) {
         var checkin_date = req.body.checkin_date;
         var checkout_date = req.body.checkout_date;
         var room = req.body.room_information;
-
-
+        var room_split = room.split(',');
+        var room_id = room_split[0];
         db.reservations.create({'guestId':guestid, 'checkin_date':checkin_date,
             'checkout_date':checkout_date}).then(function(results) {
-            res.json(results);
+            //res.json(results);
+            db.rooms.update(
+                {room_status: 1}, {where: {id: room_id}}
+            ).then(function(results) {
+            //res.json(results);
+                message = '<h5>Your reservation is successfully booked!</h5>';
+                res.render('error.handlebars',{message:message});
+            });
         });
+
+
+
     });
 
     app.delete("/api/reservations/:id", function(req, res) {

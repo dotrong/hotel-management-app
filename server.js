@@ -40,8 +40,7 @@ require("./routes/guest-api-routes.js")(app);
 require("./routes/html-routes.js")(app);
 require("./routes/reservation-api-routes.js")(app);
 require("./routes/room-api-routes.js")(app);
-require("./routes/user-api-routes.js")(app);
-//app.use("/", routes);
+
 
 db.sequelize.sync({ force: true }).then(function() {
   app.listen(PORT, function() {

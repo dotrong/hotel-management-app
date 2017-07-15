@@ -4,7 +4,13 @@ module.exports = function(app) {
   // Find all guests and return them to the user with res.json
     app.get("/api/guests", function(req, res) {
         console.log(db.guests);
-        db.guests.findAll({}).then(function(results) {
+        db.guests.findAll({
+
+            include: [{
+                model: db.reservations
+           
+            }]
+        }).then(function(results) {
             res.json(results);
         });
     });
@@ -51,7 +57,7 @@ module.exports = function(app) {
             res.json(results);
         });
     });
-
+    //guest sign up
     app.post("/api/guests/signup", function(req, res){
 
     var message = '';
@@ -67,18 +73,21 @@ module.exports = function(app) {
         }).then(function(results) {
             //res.json(results);
             if (results) {
-                res.redirect("/");
+                //res.redirect("/");
+                message = '<h5>Username already existed. please <a href="/registration">signup</a> again</h5>';
+                res.render('error.handlebars',{message:message});
             }
         });
 
     db.guests.create(req.body).then(function(results) {
-        message = "Succesfully! Your account has been created.";
-        res.json(results);
+        message = '<h5>Succesfully! Your account has been created. Please  <a href="/">login</a></h5>';
+        //res.json(results);
+        res.render('error.handlebars',{message:message});
     });
 
 });
 
-//-----------------------------------------------login page call------------------------------------------------------
+//guest login check
 app.post("/api/guests/login", function(req,res) {
     var message = '';
     var sess = req.session; 
@@ -109,8 +118,8 @@ app.post("/api/guests/login", function(req,res) {
             }
             else {
 
-                console.log("no user");
-                res.json({results})
+                message = '<h5>Username/password not found. Please <a href="/">try again</a>  or <a href="/registration">sign up</a></h5>';
+                res.render('error.handlebars',{message:message});
 
             }
         });

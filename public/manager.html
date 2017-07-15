@@ -6,16 +6,55 @@
   <title>Manager View</title>
   <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
 
-  <link href="css/normalize.css" rel="stylesheet" type="text/css">
-
-<link rel="stylesheet" href="css/login.css">
-<script src="https://code.jquery.com/jquery.js"></script>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </head>
 <body>
-    <h1> Manager Views </h1>
+    
+  <div class="navbar-2 w-nav" data-animation="default" data-collapse="medium" data-duration="400">
+    <div class="w-container"><a class="w-nav-brand" href="#"><img class="image-5" sizes="200px" src="images/grand.png" srcset="images/grand-p-500.png 500w, images/grand-p-800.png 800w, images/grand.png 906w" width="200"></a>
+    
+    </div>
+  </div>
+    <div class="container">
+      <h1> Manager Views </h1>
+  <h3>List of Room</h3>
+            
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Room Number</th>
+        <th>Room Type</th>
+        <th>Room Price</th>
+        <th>Room Status</th>
+      </tr>
+    </thead>
+    <tbody id="table_room">
+      
+    </tbody>
+  </table>
 
 
+  <h3>List of Guests</h3>
+            
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Checkin Date</th>
+        <th>Checkout Date</th>
 
+      </tr>
+    </thead>
+    <tbody id="table_guests">
+      
+    </tbody>
+  </table>
+</div>
+
+ <script src="js/manager.js"></script>
 </body>
 </html>

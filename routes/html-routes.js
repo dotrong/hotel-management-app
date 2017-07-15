@@ -32,11 +32,13 @@ module.exports = function(app) {
   // manager will see everything in this hotel: rooms, guests, reservations...
   app.get("/manager", function(req, res) {
     if (req.session.userRole === 'manager'){
+      
       res.sendFile(path.join(__dirname, "../public/manager.html"));
 
     }
     else  {
       //res.json({message: "permission denied"});
+      console.log(req.session.userRole);
       res.redirect("/");
     }
 
