@@ -22,7 +22,15 @@ module.exports = function(app) {
     app.post("/api/reservations", function(req, res) {
         // Create a reservation with the data available to us in req.body
         console.log(req.body);
-        db.reservations.create(req.body).then(function(results) {
+
+        var guestid = req.session.userid;
+        var checkin_date = req.body.checkin_date;
+        var checkout_date = req.body.checkout_date;
+        var room = req.body.room_information;
+
+
+        db.reservations.create({'guestId':guestid, 'checkin_date':checkin_date,
+            'checkout_date':checkout_date}).then(function(results) {
             res.json(results);
         });
     });

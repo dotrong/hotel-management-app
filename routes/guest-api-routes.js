@@ -84,10 +84,11 @@ app.post("/api/guests/login", function(req,res) {
     var sess = req.session; 
     var name= req.body.username;
     var pass= req.body.password;
+    
 
     db.guests.findOne({
 
-        attributes: ['password','user_role'],
+        attributes: ['password','user_role','id'],
         where: {
             username: name,
             password: pass
@@ -95,7 +96,8 @@ app.post("/api/guests/login", function(req,res) {
         }).then(function(results) {
             //res.json(results);
             if (results) {
-                req.session.userId = results.username;
+                req.session.userid = results.id;
+                req.session.username = results.username;
                 req.session.userRole = results.user_role;
 
                 if (results.user_role === 'customer') {
