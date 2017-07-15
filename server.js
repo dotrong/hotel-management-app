@@ -29,7 +29,7 @@ app.use(session({
   secret: 'ucibootcamp',
   resave: false,
   saveUninitialized: true,
-  cookie: { maxAge: 60000 }
+  cookie: { maxAge: 300000 }
 }));
 
 //end of authentication
